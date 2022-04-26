@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class MousePosition : MonoBehaviour
+{
+    public Image pointer;
+    public bool isPressed;
+    public GameObject onboardText;
+    private void Start()
+    {
+        pointer.gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (onboardText.activeSelf)
+                onboardText.gameObject.SetActive(false);
+            isPressed = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isPressed = false;
+        }
+        if (isPressed)
+        {
+            pointer.gameObject.SetActive(true);
+            pointer.gameObject.transform.position = Input.mousePosition;
+        }else if (!isPressed)
+        {
+            pointer.gameObject.SetActive(false);
+        }
+    }
+}
